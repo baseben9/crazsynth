@@ -1,0 +1,69 @@
+<html>
+	<body style="background-image:url(https://media.giphy.com/media/URZcG7uLd9h4s/giphy.gif)">
+		<title>Ben's Synth</title>
+		<style>
+		
+			button {
+			font-family:"Courier New", Courier, monospace;
+			border:none;
+			
+			}
+		</style>
+		<button style="font-size:750%;background-color:white;color:white;border:none;opacity:0 ">A</button>
+		<button id="test2" style="font-size:750%;background-color:black" onclick="newButton(2,'square')">02</button>
+		<button id="test4" style="font-size:750%;background-color:black" onclick="newButton(4,'square')">04</button>
+		<button style="font-size:750%;background-color:white;color:white;border:none;opacity:0">AA</button>
+		<button id="test7" style="font-size:750%;background-color:black" onclick="newButton(7,'square')">07</button>
+		<button id="test9" style="font-size:750%;background-color:black" onclick="newButton(9,'square')">09</button>
+		<button id="test11" style="font-size:750%;background-color:black" onclick="newButton(11,'square')">11</button>
+		
+		<br>
+		<button id="test1" style="font-size:750%;background-color:white;color:white" onclick="newButton(1,'square')">01</button>
+		<button id="test3" style="font-size:750%;background-color:white;color:white" onclick="newButton(3,'square')">03</button>
+		<button id="test5" style="font-size:750%;background-color:white;color:white" onclick="newButton(5,'square')">05</button>
+		<button id="test6" style="font-size:750%;background-color:white;color:white" onclick="newButton(6,'square')">06</button>
+		<button id="test8" style="font-size:750%;background-color:white;color:white" onclick="newButton(8,'square')">08</button>
+		<button id="test10" style="font-size:750%;background-color:white;color:white" onclick="newButton(10,'square')">10</button>
+		<button id="test12" style="font-size:750%;background-color:white;color:white" onclick="newButton(12,'square')">12</button>
+		<button id="test13" style="font-size:750%;background-color:white;color:white" onclick="newButton(13,'square')">13</button>
+		<br>
+		<button id="test14" style="font-size:750%;background-color:red;color:red" onclick="newButton(14,'square')">-35</button>
+		<button id="test15" style="font-size:750%;background-color:yellow;color:yellow" onclick="newButton(15,'sawtooth')">-10</button>
+		<br>
+		<button id="test16" style="font-size:750%;background-color:green;color:green" onclick="newButton(16,'sawtooth')">-30</button>
+		<button id="test17" style="font-size:750%;background-color:blue;color:blue" onclick="newButton(17,'sawtooth')">-10</button>
+	
+	
+		
+	
+		
+		<script>function newButton(x,y) {
+					var synth = new(window.AudioContext)();
+					var midinote = document.getElementById("test" + x).innerHTML;
+					var hz = 27.5 * Math.pow(1.059463, parseInt(midinote) + 35);
+					
+					
+					
+					var oscillator = synth.createOscillator();
+					var node = synth.createGain();	  
+					
+					oscillator.connect(node);
+					node.connect(synth.destination);
+					
+					oscillator.type = y; /*The Waveform of the oscillator, other values are 'saw' or 'square'*/
+					oscillator.frequency.value = hz; /*The Frequeny of the oscillator in hertz, 440 equals an "A4"*/
+					
+					node.gain.value = 0.5; /*The volume of the audio*/
+					
+					oscillator.start();
+					oscillator.stop(0.5);
+					window.setTimeout(term,100);
+				
+				}
+				function term() {
+				window.location.href = window.self.location;
+				}
+				</script>
+		
+	</body>
+</html>
